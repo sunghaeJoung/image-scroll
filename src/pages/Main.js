@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import ImageBox from "../components/ImageBox";
-import BtnImg from "../images/more.png";
 
 const Main = () => {
   const [images, setImages] = useState([]);
@@ -18,8 +17,8 @@ const Main = () => {
       });
       const data = await res.data.map((card) => card.urls.small);
       console.log(data);
-      setImages([...images, ...data]);
-      console.log(images);
+      setImages(data);
+      window.scrollTo(0, 0);
     } catch (err) {
       alert("이미지를 불러오는데 실패하였습니다.");
     }
@@ -33,10 +32,7 @@ const Main = () => {
   return (
     <MainWrapper>
       <ImageBox images={images} />
-      <Button onClick={() => getImages()}>
-        <h2>MORE</h2>
-        <img src={BtnImg} alt="" />
-      </Button>
+      <Button onClick={() => getImages()}>📬 OTHERS </Button>
     </MainWrapper>
   );
 };
@@ -49,20 +45,11 @@ const MainWrapper = styled.div`
 `;
 
 const Button = styled.div`
+  font-size: 18px;
+  font-weight: bold;
   margin: 40px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-
-  h2 {
-    cursor: pointer;
-  }
-
-  img {
-    width: 30px;
-    height: auto;
-    height: auto;
-    cursor: pointer;
-  }
 `;

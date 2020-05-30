@@ -12,11 +12,10 @@ const Main = () => {
       const res = await axios.get("https://api.unsplash.com/photos/random", {
         params: {
           client_id: "awB5iym0OQVCR3nZDmiOIVuksZvEC_HcEpuuon76VoU",
-          count: 27,
+          count: 28,
         },
       });
       const data = await res.data.map((card) => card.urls.small);
-      console.log(data);
       setImages(data);
       window.scrollTo(0, 0);
     } catch (err) {
@@ -32,7 +31,7 @@ const Main = () => {
   return (
     <MainWrapper>
       <ImageBox images={images} />
-      <Button onClick={() => getImages()}>📬 OTHERS </Button>
+      <Button onClick={() => getImages()}>MORE IMAGES 🌉 </Button>
     </MainWrapper>
   );
 };

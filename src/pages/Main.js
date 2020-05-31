@@ -1,54 +1,85 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { getResult, closeFilter } from "Redux/Actions";
 import styled from "styled-components";
-import ImageBox from "../components/ImageBox";
+import { URL } from "config";
+import Header from "components/Header/Header";
+import LikeBox from "components/LikeBox/LikeBox";
+import Filter from "components/Filter/Filter";
+import ImageBox from "components/Image/ImageBox";
 
-const Main = () => {
-  const [images, setImages] = useState([]);
+const Main = (props) => {
+  const { getResult, data, closeFilter } = props;
+  const [scroll, setScroll] = useState(0);
 
   // 이미지 api 가져오는 함수
   const getImages = async () => {
     try {
-      const res = await axios.get("https://api.unsplash.com/photos/random", {
+      const res = await axios.get(`${URL}/photos/random`, {
         params: {
-          client_id: "awB5iym0OQVCR3nZDmiOIVuksZvEC_HcEpuuon76VoU",
+          client_id: "vJLALMy4yRn8RJ1-Suj2Bktb-nxJLaG0DzmlDMsrB54",
           count: 28,
         },
       });
-      const data = await res.data.map((card) => card.urls.small);
-      setImages(data);
+      getResult(res.data);
       window.scrollTo(0, 0);
     } catch (err) {
       alert("이미지를 불러오는데 실패하였습니다.");
     }
   };
 
-  //   훅스에서 컴디마
+  const controlScroll = () => {
+    let position = window.pageYOffset;
+    setScroll(position);
+    closeFilter();
+  };
+
   useEffect(() => {
     getImages();
   }, []);
 
+  useEffect(() => {
+    controlScroll();
+  }, [data]);
+
   return (
     <MainWrapper>
-      <ImageBox images={images} />
+      <Header />
+      <LikeBox />
+      <Filter />
+      <ImageBox />
       <Button onClick={() => getImages()}>MORE IMAGES 🌉 </Button>
     </MainWrapper>
   );
 };
 
-export default Main;
+const mapStateToProps = (state) => {
+  return {
+    data: state.getResult,
+    filter: state.controlFilter.filter,
+  };
+};
+
+export default connect(mapStateToProps, { getResult, closeFilter })(Main);
 
 const MainWrapper = styled.div`
   width: 100%;
   height: auto;
+  min-height: 100%;
+  position: relative;
+  overflow-x: hidden;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   font-size: 18px;
-  font-weight: bold;
   margin: 40px auto;
+  border: none;
+  background: black;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 4px;
   cursor: pointer;
 `;

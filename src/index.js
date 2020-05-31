@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "Redux/rootReducer";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import Main from "./pages/Main";
+import Main from "pages/Main";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -22,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
     color: #000000
   }
 
+  input {
+    border: none;
+  }
+
   #root {
     width: 100%;
     height: 100%;
@@ -29,9 +36,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <GlobalStyle />
-    <Main />
-  </React.StrictMode>,
+  <Provider store={createStore(rootReducer)}>
+    <React.StrictMode>
+      <GlobalStyle />
+      <Main />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );

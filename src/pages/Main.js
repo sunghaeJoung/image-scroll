@@ -11,7 +11,6 @@ import ImageBox from "components/Image/ImageBox";
 
 const Main = (props) => {
   const { getResult, data, closeFilter } = props;
-  const [scroll, setScroll] = useState(0);
 
   // 이미지 api 가져오는 함수
   const getImages = async () => {
@@ -29,9 +28,7 @@ const Main = (props) => {
     }
   };
 
-  const controlScroll = () => {
-    let position = window.pageYOffset;
-    setScroll(position);
+  const controlFilter = () => {
     closeFilter();
   };
 
@@ -40,7 +37,7 @@ const Main = (props) => {
   }, []);
 
   useEffect(() => {
-    controlScroll();
+    controlFilter();
   }, [data]);
 
   return (

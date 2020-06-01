@@ -15,14 +15,14 @@ const LikeBox = (props) => {
         }}
       />
       <LikeWrapper>
-        {like.length == 0 ? (
+        {like.length === 0 ? (
           <div>좋아요 목록이 없습니다.</div>
         ) : (
           <LikeList>
             {like.map((card) => {
               return (
                 <Like>
-                  <img src={card.urls.small} />
+                  <img src={card.urls.small} alt="" />
                   <div>{card.description}</div>
                 </Like>
               );

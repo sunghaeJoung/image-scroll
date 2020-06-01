@@ -7,7 +7,7 @@ import FilterData from "./Filter-data";
 import { URL } from "config";
 
 const Filter = (props) => {
-  const { filter, data, getResult } = props;
+  const { filter, getResult } = props;
   const [click, setClick] = useState(0);
 
   const handleFilter = (id, val) => {
@@ -62,7 +62,6 @@ const Filter = (props) => {
 const mapStateToProps = (state) => {
   return {
     filter: state.controlFilter.filter,
-    data: state.getResult,
   };
 };
 

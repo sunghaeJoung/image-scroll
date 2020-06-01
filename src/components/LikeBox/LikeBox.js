@@ -48,6 +48,8 @@ export default connect(mapStateToProps, {
 const LikeBoxWrapper = styled.div`
   width: 350px;
   min-height: 200px;
+  max-height: 450px;
+  overflow-y: scroll;
   background: black;
   border-top: 1px solid white;
   position: absolute;

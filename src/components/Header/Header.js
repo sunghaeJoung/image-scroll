@@ -7,12 +7,13 @@ import { Filter } from "@styled-icons/foundation/Filter";
 import { Close } from "@styled-icons/evaicons-solid/Close";
 
 const Header = (props) => {
-  const { filter, openFilter, closeFilter, openLikeBox } = props;
+  const { filter, openFilter, closeFilter, openLikeBox, like } = props;
 
   return (
     <HeaderWrapper>
       <IconWrapper mode={filter}>
         <HeartIcon
+          className={like.length !== 0 && "fill-heart"}
           onClick={() => {
             openLikeBox();
           }}
@@ -36,6 +37,7 @@ const mapStateToProps = (state) => {
   return {
     filter: state.controlFilter.filter,
     likeBox: state.controlLikeBox.likeBox,
+    like: state.addLike,
   };
 };
 
@@ -86,6 +88,10 @@ const Icon = css`
 
 const HeartIcon = styled(Heart)`
   ${Icon}
+
+  &.fill-heart {
+    color: red;
+  }
 `;
 
 const FilterIcon = styled(Filter)`

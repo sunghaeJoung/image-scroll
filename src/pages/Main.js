@@ -8,6 +8,7 @@ import Header from "components/Header/Header";
 import LikeBox from "components/LikeBox/LikeBox";
 import Filter from "components/Filter/Filter";
 import ImageBox from "components/Image/ImageBox";
+// import Grid from "components/Grid";
 
 const Main = (props) => {
   const { getResult, data, closeFilter } = props;
@@ -17,8 +18,8 @@ const Main = (props) => {
     try {
       const res = await axios.get(`${URL}/photos/random`, {
         params: {
-          client_id: "vJLALMy4yRn8RJ1-Suj2Bktb-nxJLaG0DzmlDMsrB54",
-          count: 28,
+          client_id: "eQbS2u9pVWUs2m5CzR0NI6iBcEAwyDBDRE1R-3bKY_M",
+          count: 30,
         },
       });
       getResult(res.data);
@@ -27,7 +28,7 @@ const Main = (props) => {
       alert("이미지를 불러오는데 실패하였습니다.");
     }
   };
-
+  console.log(data);
   const controlFilter = () => {
     closeFilter();
   };
@@ -45,6 +46,7 @@ const Main = (props) => {
       <Header />
       <LikeBox />
       <Filter />
+      {/* <Grid /> */}
       <ImageBox />
       <Button onClick={() => getImages()}>MORE IMAGES 🌉 </Button>
     </MainWrapper>

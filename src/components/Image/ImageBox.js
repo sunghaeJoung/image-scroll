@@ -8,7 +8,7 @@ const ImageBox = (props) => {
   const { data } = props;
 
   return (
-    <ImageBoxWrapper>
+    <ImageBoxWrapper className="grid">
       {data.length > 0 &&
         data.map((card, i) => {
           return <Image card={card} key={i} />;
@@ -27,5 +27,7 @@ export default connect(mapStateToProps, { getResult })(ImageBox);
 
 const ImageBoxWrapper = styled.section`
   margin: 70px 50px 0;
-  column-width: 400px;
+  /* display: flex;
+  flex-wrap: wrap; */
+  column-width: 350px;
 `;

@@ -28,7 +28,6 @@ const Main = (props) => {
       alert("이미지를 불러오는데 실패하였습니다.");
     }
   };
-  console.log(data);
   const controlFilter = () => {
     closeFilter();
   };

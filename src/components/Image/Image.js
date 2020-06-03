@@ -16,32 +16,11 @@ const Images = (props) => {
   const [height, setHeight] = useState(0);
   const ref = useRef();
 
-  // useEffect(() => {
-  //   console.log("ref", ref);
-  //   // console.log("ref.current", ref.current);
-  // }, []);
-
   useEffect(() => {
     if (load) {
       setHeight(ref.current.clientHeight);
     }
   }, [load]);
-
-  // const getImageHeight = () => {
-  //   console.log(image);
-  //   let ele = document.getElementById("card");
-  //   let height = ele.clientHeight;
-  //   console.log(height);
-  // };
-
-  // const getImageHeight = () => {
-  //   console.log("heyhey");
-  //   let img = document.getElementById("card");
-  //   console.log(img);
-  //   img.onload = function () {
-  //     console.log(img.height);
-  //   };
-  // };
 
   return (
     <Image height={height !== 0 && height}>

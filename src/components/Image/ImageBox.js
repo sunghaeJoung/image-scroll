@@ -27,7 +27,5 @@ export default connect(mapStateToProps, { getResult })(ImageBox);
 
 const ImageBoxWrapper = styled.section`
   margin: 70px 50px 0;
-  /* display: flex;
-  flex-wrap: wrap; */
   column-width: 350px;
 `;

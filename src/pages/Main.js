@@ -8,7 +8,6 @@ import Header from "components/Header/Header";
 import LikeBox from "components/LikeBox/LikeBox";
 import Filter from "components/Filter/Filter";
 import ImageBox from "components/Image/ImageBox";
-// import Grid from "components/Grid";
 
 const Main = (props) => {
   const { getResult, data, closeFilter } = props;
@@ -45,7 +44,6 @@ const Main = (props) => {
       <Header />
       <LikeBox />
       <Filter />
-      {/* <Grid /> */}
       <ImageBox />
       <Button onClick={() => getImages()}>MORE IMAGES 🌉 </Button>
     </MainWrapper>

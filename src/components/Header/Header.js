@@ -63,7 +63,8 @@ const IconWrapper = styled.div`
   ${(props) => {
     if (props.mode) {
       return css`
-        transform: translateX(-150px);
+        /* transform은 요소의 이동, 회전, 확대 축소 등을 하기 위한 함수 제공 애니메이션 효과를 부여하기 위해서는 transition이나 animation과 함께 사용해야 함 */
+        transform: translateX(-160px);
         transition: transform 0.3s ease-in-out;
       `;
     } else {
@@ -75,6 +76,7 @@ const IconWrapper = styled.div`
   }}
 `;
 
+// sass에서 maxin같은 기능으로 재사용할 수 있음
 const Icon = css`
   width: 30px;
   height: auto;

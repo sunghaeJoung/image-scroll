@@ -5,17 +5,18 @@ import styled from "styled-components";
 import { Heart } from "@styled-icons/boxicons-solid/Heart";
 
 const Images = (props) => {
-  const { addLike } = props;
   const image = props.card;
   const [load, setLoad] = useState(false);
+  const [height, setHeight] = useState(0);
+  const ref = useRef();
+  const { addLike } = props;
 
   const handleLike = (like) => {
     addLike(like);
   };
 
-  const [height, setHeight] = useState(0);
-  const ref = useRef();
-
+  // 이미지가 로딩된 후 높이를 가져와야 하기 때문에 onLoad를 사용해서 이미지가 화면에 뿌려지기 전에 높이를 가져오는 코드 작성
+  // 스켈레톤 스크린을 구현하려고 높이를 구한 것이기 때문에 지금은 높이값 auto로 해줘도 됨
   useEffect(() => {
     if (load) {
       setHeight(ref.current.clientHeight);

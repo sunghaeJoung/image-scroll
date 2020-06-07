@@ -27,16 +27,14 @@ const Main = (props) => {
       alert("이미지를 불러오는데 실패하였습니다.");
     }
   };
-  const controlFilter = () => {
-    closeFilter();
-  };
 
   useEffect(() => {
     getImages();
   }, []);
 
+  // 필터 선택하면 필터창 닫히게
   useEffect(() => {
-    controlFilter();
+    closeFilter();
   }, [data]);
 
   return (
@@ -50,6 +48,7 @@ const Main = (props) => {
   );
 };
 
+// 해당 컴포넌트에서 사용하고자 하는 상태값을 props로 넘겨줌
 const mapStateToProps = (state) => {
   return {
     data: state.getResult,
@@ -57,6 +56,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+// connect는 react-redux 안에 내장되어있는 함수로 스토어를 컴포넌트와 연결해줌
 export default connect(mapStateToProps, { getResult, closeFilter })(Main);
 
 const MainWrapper = styled.div`

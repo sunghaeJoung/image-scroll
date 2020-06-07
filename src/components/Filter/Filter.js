@@ -10,9 +10,9 @@ const Filter = (props) => {
   const { filter, getResult } = props;
   const [click, setClick] = useState(0);
 
-  const handleFilter = (id, val) => {
-    setClick(id);
-    sortingImages(val);
+  const handleFilter = (card) => {
+    setClick(card.id);
+    sortingImages(card.title);
   };
 
   const sortingImages = async (val) => {
@@ -44,9 +44,7 @@ const Filter = (props) => {
                     className={click === card.id && "clicked"}
                     key={id}
                   >
-                    <Card onClick={() => handleFilter(card.id, card.title)}>
-                      {card.title}
-                    </Card>
+                    <Card onClick={() => handleFilter(card)}>{card.title}</Card>
                     <Check>✔︎</Check>
                   </CardWrapper>
                 );
